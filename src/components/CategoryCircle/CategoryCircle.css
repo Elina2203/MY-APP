@@ -1,0 +1,22 @@
+.circle {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin: 0 12px 12px 12px;
+  background-color: var(--violet);
+}
+.inbox {
+  background-color: var(--light-grey);
+}
+.work {
+  background-color: var(--green);
+}
+.shopping {
+  background-color: var(--red);
+}
+.family {
+  background-color: var(--yellow);
+}
+.personal {
+  background-color: var(--violet);
+}

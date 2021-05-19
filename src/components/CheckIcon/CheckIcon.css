@@ -1,0 +1,10 @@
+.checkbox__symbol,
+.checkbox__symbol--checked {
+  display: none;
+  font-size: 12px;
+}
+.checkbox__symbol--checked {
+  display: block;
+  color: white;
+  size: 11px;
+}

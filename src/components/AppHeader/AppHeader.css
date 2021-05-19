@@ -1,0 +1,9 @@
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  padding-right: 18px;
+}
+
+.header__title {
+  margin-bottom: 34px;
+}
