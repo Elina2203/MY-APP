@@ -2,10 +2,11 @@ import { useState } from "react";
 import { CheckIcon } from "../CheckIcon/CheckIcon";
 import "./Checkbox.css";
 
-export const Checkbox = ({ done }) => {
+export const Checkbox = ({ done, handleState }) => {
   const [checked, setChecked] = useState(done);
 
   const handleClick = () => {
+    handleState(!checked);
     setChecked(!checked);
   };
   return (

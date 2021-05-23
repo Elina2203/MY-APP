@@ -5,6 +5,10 @@
 }
 .checkbox__symbol--checked {
   display: block;
-  color: white;
-  size: 11px;
+  fill: #fff;
+}
+.checkbox__icon {
+  display: block;
+  width: 16px;
+  height: 16px;
 }
