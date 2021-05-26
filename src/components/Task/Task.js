@@ -10,16 +10,23 @@ export const Task = ({
   category,
   updateList,
   index,
-  updateListText,
+  setFocusedItem,
+  id,
 }) => {
   const currentCategory = categoryList.find(
     (categoryItem) => categoryItem.id === category
   );
   const handleState = (checked) => {
-    updateList(index, checked);
+    updateList(index, "done", checked);
   };
   const handleText = (text) => {
-    updateListText(index, text);
+    updateList(index, "text", text);
+  };
+  const handleFocus = () => {
+    setFocusedItem(id);
+  };
+  const handleBlur = () => {
+    setFocusedItem();
   };
   return (
     <div className="task">
@@ -27,7 +34,12 @@ export const Task = ({
         <Checkbox done={done} handleState={handleState} />
       </div>
       <div className="task__input">
-        <Input text={text} handleText={handleText} />
+        <Input
+          text={text}
+          handleText={handleText}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
+        />
       </div>
       <div className="task__category">
         {currentCategory && <CategoryDot color={currentCategory.color} />}
