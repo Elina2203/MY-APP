@@ -1,0 +1,18 @@
+.delete {
+  display: flex;
+
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+  cursor: pointer;
+  background-color: rgb(172, 20, 17);
+}
+.delete::after {
+  content: "";
+  width: 12px;
+  height: 2px;
+  background-color: var(--white);
+}
