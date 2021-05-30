@@ -13,6 +13,7 @@
 .checkbox--checked {
   border: 1px solid var(--blue);
   background-color: var(--blue);
+  fill: #fff;
   /* #006CFF blue*/
 }
 .checkbox__input {

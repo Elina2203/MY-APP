@@ -4,18 +4,41 @@ import "./Task.css";
 import { categoryList } from "../../data/categoryList";
 import { CategoryDot } from "../CategoryDot/CategoryDot";
 import { Delete } from "../Delete/Delete";
+import { useContext } from "react";
+import { EditingContext } from "../../providers/EditingProvider";
 
-export const Task = ({ done, text, category, updateList, index, id, isEditing, deleteTask }) => {
+export const taskKeys = {
+  done: "done",
+  text: "text",
+  category: "category",
+};
+
+export const Task = ({
+  done,
+  text,
+  category,
+  updateList,
+  index,
+  id,
+  deleteTask,
+  setCategoryModalOpen,
+  setActiveTask,
+}) => {
+  const { isEditing } = useContext(EditingContext);
   const currentCategory = categoryList.find((categoryItem) => categoryItem.id === category);
   const handleState = (checked) => {
-    updateList(index, "done", checked);
+    updateList(index, taskKeys.done, checked);
   };
   const handleText = (text) => {
-    updateList(index, "text", text);
+    updateList(index, taskKeys.text, text);
   };
 
   const handleDelete = () => {
     deleteTask(id);
+  };
+  const openCategoryModal = () => {
+    setCategoryModalOpen(true);
+    setActiveTask({ category, index });
   };
   return (
     <div className="task">
@@ -30,7 +53,9 @@ export const Task = ({ done, text, category, updateList, index, id, isEditing, d
       <div className="task__input">
         <Input text={text} handleText={handleText} />
       </div>
-      <div className="task__category">{currentCategory && <CategoryDot color={currentCategory.color} />}</div>
+      <div className="task__category" onClick={openCategoryModal}>
+        {<CategoryDot color={currentCategory && currentCategory.color} />}
+      </div>
     </div>
   );
 };
