@@ -28,10 +28,10 @@ const DEFAULT_NEW_TASK = {
 //     id: "",
 //   },
 // ];
-const todoList = JSON.parse(localStorage.getItem("todolist"));
+const todoList = JSON.parse(localStorage.getItem("todolist")) || [];
 
 function App() {
-  const [list, setList] = useState(todoList || []);
+  const [list, setList] = useState(todoList);
   const [isCategoryModalOpen, setCategoryModalOpen] = useState(false);
   const [activeTask, setActiveTask] = useState();
   const [activeCategoryId, setActiveCategoryId] = useState();

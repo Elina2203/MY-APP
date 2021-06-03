@@ -26,6 +26,6 @@
 //   },
 // ];
 
-export const categoryList = JSON.parse(localStorage.getItem("categoryList"));
+export const categoryList = JSON.parse(localStorage.getItem("categoryList")) || [];
 localStorage.setItem("categoryList", JSON.stringify(categoryList));
 console.log(categoryList);
