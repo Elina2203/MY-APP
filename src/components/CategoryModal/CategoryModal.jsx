@@ -1,25 +1,26 @@
 import "./CategoryModal.css";
 import { categoryList } from "../../data/categoryList";
-import { CategoryDot } from "../CategoryDot/CategoryDot";
-import { CheckIcon } from "../CheckIcon/CheckIcon";
+// import { CategoryDot } from "../CategoryDot/CategoryDot";
+// import { CheckIcon } from "../CheckIcon/CheckIcon";
 import { CloseButton } from "../CloseButton/CloseButton";
+import { CategoryItem } from "../CategoryItem/CategoryItem";
 
-const CategoryItem = ({ id, title, color, isActive, onClick }) => {
-  const handleClick = () => {
-    onClick(id);
-  };
-  return (
-    <div className="category-item" onClick={handleClick}>
-      <div className="category-item--checkbox">
-        <CheckIcon checked={isActive} />
-      </div>
-      <div className="category-item__title">{title}</div>
-      <div className="category-item__dot">
-        <CategoryDot color={color} />
-      </div>
-    </div>
-  );
-};
+// const CategoryItem = ({ id, title, color, isActive, onClick }) => {
+//   const handleClick = () => {
+//     onClick(id);
+//   };
+//   return (
+//     <div className="category-item" onClick={handleClick}>
+//       <div className="category-item--checkbox">
+//         <CheckIcon checked={isActive} />
+//       </div>
+//       <div className="category-item__title">{title}</div>
+//       <div className="category-item__dot">
+//         <CategoryDot color={color} />
+//       </div>
+//     </div>
+//   );
+// };
 export const CategoryModal = ({ activeCategoryId, onClick, closeModal }) => {
   const renderCategory = (category) => (
     <CategoryItem key={category.id} isActive={activeCategoryId === category.id} onClick={onClick} {...category} />

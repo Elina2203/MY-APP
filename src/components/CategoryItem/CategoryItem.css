@@ -1,0 +1,28 @@
+.category-item {
+  display: flex;
+  transition: background-color 0.25s ease-in-out;
+  cursor: pointer;
+}
+.category-item:hover {
+  background-color: #eee;
+}
+.category-item--checkbox {
+  flex: 0 0 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.category-item + .category-item {
+  border-top: 1px solid #eee;
+}
+.category-item__title {
+  flex: 1 0 0%;
+  min-width: 0;
+  padding: 12px 0;
+}
+.category-item__dot {
+  flex: 0 0 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

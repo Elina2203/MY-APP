@@ -25,6 +25,7 @@ export const Task = ({
   setActiveTask,
 }) => {
   const { isEditing } = useContext(EditingContext);
+
   const currentCategory = categoryList.find((categoryItem) => categoryItem.id === category);
   const handleState = (checked) => {
     updateList(index, taskKeys.done, checked);
