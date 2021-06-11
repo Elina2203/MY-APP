@@ -11,10 +11,9 @@
   cursor: pointer;
 }
 .checkbox--checked {
-  border: 1px solid var(--blue);
-  background-color: var(--blue);
+  border: 1px solid #006cff;
+  background-color: #006cff;
   fill: #fff;
-  /* #006CFF blue*/
 }
 .checkbox__input {
   opacity: 0;
