@@ -15,20 +15,24 @@ export const Category = ({ id, title, color, setActiveCategoryId, isActive, dele
   const handleDelete = () => {
     deleteCategory(id);
   };
-  //////////////
+
   const [showCategoryModal, hideCategoryModal] = useModal(() => {
     const onSubmit = () => {
       hideCategoryModal();
       // closeMenu();
     };
-
+    const currentCategory = {
+      id: id,
+      title: title,
+      color: color,
+    };
     return (
       <Modal title="Add Category" closeModal={hideCategoryModal}>
-        <CategoryForm onSubmit={onSubmit} />
+        <CategoryForm onSubmit={onSubmit} currentCategory={currentCategory} />
       </Modal>
     );
   });
-  //////////////
+
   return (
     <div className="category">
       <div className={`category__action-item-back ${isEditing && "category__action-item-back--flipped"}`}>
