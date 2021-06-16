@@ -1,48 +1,49 @@
 import { useContext } from "react";
-import { useModal } from "react-modal-hook";
+import { DataContext } from "../../providers/DataProvider";
 import { EditingContext } from "../../providers/EditingProvider";
-import { CategoryForm } from "../CategoryForm/CategoryForm";
 import { Delete } from "../Delete/Delete";
-import { EditCategory } from "../EditCategory/EditCategory";
-import { Modal } from "../Modal/Modal";
 import "./Category.css";
+import { ReactComponent as SvgEdit } from "../../assets/edit.svg";
+import { useModal } from "react-modal-hook";
+import { Modal } from "../Modal/Modal";
+import { CategoryForm } from "../CategoryForm/CategoryForm";
 
-export const Category = ({ id, title, color, setActiveCategoryId, isActive, deleteCategory }) => {
+export const Category = ({ id, title, color, setActiveCategoryId, isActive }) => {
   const { isEditing } = useContext(EditingContext);
+  const { categoryList, setCategoryList } = useContext(DataContext);
   const handleClick = () => {
+    if (isEditing) return;
     setActiveCategoryId(!isActive ? id : undefined);
   };
   const handleDelete = () => {
-    deleteCategory(id);
+    const newList = categoryList.filter((item) => item.id !== id);
+    setCategoryList(newList);
   };
-
   const [showCategoryModal, hideCategoryModal] = useModal(() => {
-    const onSubmit = () => {
-      hideCategoryModal();
-      // closeMenu();
-    };
-    const currentCategory = {
-      id: id,
-      title: title,
-      color: color,
-    };
     return (
       <Modal title="Add Category" closeModal={hideCategoryModal}>
-        <CategoryForm onSubmit={onSubmit} currentCategory={currentCategory} />
+        <CategoryForm currentCategory={{ id, title, color }} onSubmit={hideCategoryModal} />
       </Modal>
     );
   });
-
+  const handleEdit = (e) => {
+    e.stopPropagation();
+    showCategoryModal();
+  };
   return (
     <div className="category">
       <div className={`category__action-item-back ${isEditing && "category__action-item-back--flipped"}`}>
         <Delete onClick={handleDelete} />
       </div>
-      <div className="category__box" style={{ backgroundColor: color }} onClick={handleClick}>
+      <div
+        className={`category__box ${isEditing && "category__box--disabled"}`}
+        style={{ backgroundColor: color }}
+        onClick={handleClick}
+      >
         <div className="category__title">{title}</div>
-      </div>
-      <div className={`category__edit-item-back ${isEditing && "category__edit-item-back--flipped"}`}>
-        <EditCategory onClick={showCategoryModal}></EditCategory>
+        <div className={`category__edit ${isEditing && "category__edit--active"}`} onClick={handleEdit}>
+          <SvgEdit />
+        </div>
       </div>
     </div>
   );
