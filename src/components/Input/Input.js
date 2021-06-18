@@ -3,7 +3,7 @@ import { EditingContext } from "../../providers/EditingProvider";
 import "./Input.css";
 
 export const Input = ({ text, handleText, newTask }) => {
-  const { setNewTaskId } = useContext(EditingContext);
+  const { setNewTaskId, isEditing } = useContext(EditingContext);
   const inputRef = useRef(null);
   const textRef = useRef(text);
   const handleInput = (e) => {
@@ -16,7 +16,13 @@ export const Input = ({ text, handleText, newTask }) => {
     }
   }, [newTask, setNewTaskId]);
   return (
-    <div contentEditable className="input" suppressContentEditableWarning onInput={handleInput} ref={inputRef}>
+    <div
+      contentEditable={!isEditing}
+      className={`input ${isEditing && "input--disabled"}`}
+      suppressContentEditableWarning
+      onInput={handleInput}
+      ref={inputRef}
+    >
       {textRef.current}
     </div>
   );

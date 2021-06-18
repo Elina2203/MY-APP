@@ -7,3 +7,7 @@
   font-family: inherit;
   outline: none;
 }
+.input--disabled {
+  -webkit-user-select: none;
+  user-select: none;
+}
